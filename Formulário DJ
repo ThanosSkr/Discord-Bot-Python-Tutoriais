@@ -1,0 +1,28 @@
+    if message.content.startswith('r%dj'):
+        await client.send_message(message.author,
+                            '**🎧 Já foi DJ de algum servidor? {}**'.format(message.author.mention))
+        jogador = await client.wait_for_message(author=message.author)
+        await client.send_message(message.author,
+                        '**🗣 Porque acha que está capacitado para receber este cargo? {}**'.format(message.author.mention))
+        motivo = await client.wait_for_message(author=message.author)
+        await client.send_message(message.author, '**📆 Qual a sua idade? {}**'.format(message.author.mention))
+        morada = await client.wait_for_message(author=message.author)
+        await client.send_message(message.author, '**🌎 Onde você mora? Sua conexão com a internet é boa? {}**'.format(message.author.mention))
+        dia = await client.wait_for_message(author=message.author)
+        await client.send_message(message.author, '**📠 Cite 3 comandos básicos de um bot de música! {}:**'.format(message.author.mention))
+        estilos = await client.wait_for_message(author=message.author)
+        await client.send_message(message.author, '**🔊 Quais os estilos de música que está fazendo sucesso atualmente? {}:**'.format(message.author.mention))
+        motivo2 = await client.wait_for_message(author=message.author)
+        await client.send_message(message.author, '**🔔 Se precisarmos de você, estaria online para nos ajudar? {}:**'.format(message.author.mention))
+        prova = await client.wait_for_message(author=message.author)
+        canal = client.get_channel('474410264922554368')
+        embed = discord.Embed(colour=0xFFA500,
+                              description="Formulário para DJ de: {} ".format(message.author.mention))
+        embed.add_field(name='`🗣 | Porque acha que está capacitado para receber este cargo?:`', value=motivo.content)
+        embed.add_field(name='`📆 | Qual a sua idade?:`', value=morada.content)
+        embed.add_field(name='`🌎 | Onde você mora? Sua conexão com a internet é boa?:`', value=dia.content)
+        embed.add_field(name='`📠 | Cite 3 comandos básicos de um bot de música:`', value=estilos.content)
+        embed.add_field(name='`🔊 | Quais os estilos de música que está fazendo sucesso atualmente?:`', value=motivo2.content)
+        embed.add_field(name='`🔔 | Se precisarmos de você, estaria online para nos ajudar?:`', value=prova.content)
+        embed.add_field(name='`🎧 | Já foi DJ de algum servidor?:`', value=jogador.content)
+        await client.send_message(canal, embed=embed)
